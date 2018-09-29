@@ -1,0 +1,54 @@
+namespace org.ats.hl.kyc
+
+asset CustomerIdentification identified by custid {
+  o String custid
+  o CustomerName custName
+  o CustomerAddress custAddress
+  o String custMobile optional
+  o String custEmail optional
+  o Documents[] documents
+}
+
+concept Documents {
+  o DocumentType documentType default="AADHAR"
+  o String documentName
+  o String documentDescription optional
+  o Status documentSubmitted default="No"
+  o Status documentUploaded default="No"
+  o String documentURL optional
+}
+
+concept CustomerName {
+  o String surName optional
+  o String title optional
+  o String firstName
+  o String middleName optional
+  o String lastName optional
+}
+
+concept CustomerAddress {
+  o String flatNumber optional
+  o String plotNumber optional
+  o String apartmentName optional
+  o String street optional
+  o String area optional
+  o String address optional
+  o String city
+  o String state
+  o String country
+  o String pincode regex=/[0-9][0-9][0-9][0-9][0-9][0-9]?/
+}
+
+enum DocumentType {
+  o PANCARD
+  o AADHAR
+  o PASSPORT
+  o DRIVINGLICENSE
+}
+
+enum Status {
+  o Yes
+  o No
+  o Active
+  o Inactive
+}
